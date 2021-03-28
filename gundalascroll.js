@@ -15,9 +15,9 @@ var GScroll = {
 	defaultClass: "gs-prevent",
 	extraClass: "",
 	preventScroll: function (args) {
-        var _elHtml			= this.elHtml;
+		var _elHtml = this.elHtml;
 
-        if (_elHtml.classList.contains(this.defaultClass)) {
+		if (_elHtml.classList.contains(this.defaultClass)) {
 			return false;
 		}
 
@@ -34,19 +34,19 @@ var GScroll = {
 
 		if (args === undefined || args === null) {
 			args = {};
-		} else if(args !== ""){
+		} else if (args === "object") {
 			console.warn("There is no action for " + args);
 		} else {
-			if(args.class !== undefined && args.class !== null) {
+			if (args.class !== undefined && args.class !== null) {
 				this.extraClass = args.class;
 				_elHtml.classList.add(this.extraClass);
 			}
 
-			if(typeof args.init === "function") {
+			if (typeof args.init === "function") {
 				args.init();
 			}
 		}
-		
+
 		var EGprevent = new Event('gscroll-prevent');
 		window.dispatchEvent(EGprevent);
 	},
@@ -60,8 +60,8 @@ var GScroll = {
 		_elHtml.removeAttribute("style");
 
 		_elHtml.classList.remove(this.defaultClass);
-		
-		if(this.extraClass !== "") {
+
+		if (this.extraClass !== "") {
 			_elHtml.classList.remove(this.extraClass);
 		}
 
@@ -70,9 +70,9 @@ var GScroll = {
 		var EGactive = new Event('gscroll-active');
 		window.dispatchEvent(EGactive);
 	},
-	toggleScroll: function () {
+	toggleScroll: function (args) {
 		if (!this.elHtml.classList.contains(this.defaultClass)) {
-			this.preventScroll();
+			this.preventScroll(args);
 		} else {
 			this.activeScroll();
 		}

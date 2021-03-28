@@ -90,7 +90,9 @@
 <script src="bundle.js"></script>
 <script>
 	document.getElementById("prevent-scroll").addEventListener("click", function(){
-		GScroll.preventScroll();
+		GScroll.toggleScroll({
+			class: "zzzz"
+		});
 	});
 
 	document.getElementById("active-scroll").addEventListener("click", function(){
