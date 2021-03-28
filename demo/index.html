@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gundalascroll.js</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<main>
+		<ul>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+			<li>D</li>
+			<li>E</li>
+			<li>F</li>
+			<li>J</li>
+			<li>K</li>
+			<li>L</li>
+			<li>M</li>
+			<li>N</li>
+			<li>O</li>
+			<li>P</li>
+			<li>Q</li>
+			<li>R</li>
+			<li>S</li>
+			<li>T</li>
+			<li>U</li>
+			<li>V</li>
+			<li>W</li>
+			<li>Y</li>
+			<li>Z</li>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+			<li>D</li>
+			<li>E</li>
+			<li>F</li>
+			<li>J</li>
+			<li>K</li>
+			<li>L</li>
+			<li>M</li>
+			<li>N</li>
+			<li>O</li>
+			<li>P</li>
+			<li>Q</li>
+			<li>R</li>
+			<li>S</li>
+			<li>T</li>
+			<li>U</li>
+			<li>V</li>
+			<li>W</li>
+			<li>Y</li>
+			<li>Z</li>
+			<li>A</li>
+			<li>B</li>
+			<li>C</li>
+			<li>D</li>
+			<li>E</li>
+			<li>F</li>
+			<li>J</li>
+			<li>K</li>
+			<li>L</li>
+			<li>M</li>
+			<li>N</li>
+			<li>O</li>
+			<li>P</li>
+			<li>Q</li>
+			<li>R</li>
+			<li>S</li>
+			<li>T</li>
+			<li>U</li>
+			<li>V</li>
+			<li>W</li>
+			<li>Y</li>
+			<li>Z</li>
+		</ul>
+	</main>
+	<footer id="sticky-footer">
+		<div class="button-group">
+			<button id="prevent-scroll">PREVENT</button>
+			<button id="active-scroll">ACTIVE</button>
+		</div>
+	</footer>
+</body>
+<script src="bundle.js"></script>
+<script>
+	document.getElementById("prevent-scroll").addEventListener("click", function(){
+		GScroll.preventScroll();
+	});
+
+	document.getElementById("active-scroll").addEventListener("click", function(){
+		GScroll.activeScroll();
+	});
+
+	window.addEventListener("gscroll-prevent", function() {
+		var elHtml = document.getElementsByTagName("html")[0];
+		document.getElementById("sticky-footer").style.width = parseFloat(getComputedStyle(elHtml, null).width.replace("px", "")) + "px";
+	});
+
+	window.addEventListener("gscroll-active", function() {
+		document.getElementById("sticky-footer").removeAttribute("style");
+	});
+</script>
+</html>
