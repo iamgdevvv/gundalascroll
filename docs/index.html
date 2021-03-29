@@ -101,9 +101,9 @@
 
 	window.addEventListener("gscroll-prevent", function(event) {
 		var elHtml = document.getElementsByTagName("html")[0];
-		document.getElementById("sticky-footer").style.width = parseFloat(getComputedStyle(elHtml, null).width.replace("px", "")) + "px";
+		document.getElementById("sticky-footer").style.width = event.detail.widthWrapper + "px";
 
-		console.log("oldWidth: " + event.detail.oldWidth);
+		console.log("widthWrapper: " + event.detail.widthWrapper);
 		console.log("spaceScroll: " + event.detail.spaceScroll);
 	});
 
