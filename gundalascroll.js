@@ -1,5 +1,5 @@
 /*
- Version: 0.0.1
+ Version: 0.1.1
   Author: Grafis Nuresa
  Website: http://iamgdevvv.github.io/gundalascroll
     Docs: http://iamgdevvv.github.io/gundalascroll
@@ -8,6 +8,29 @@
  */
 
 'use strict';
+
+/* POLYFILL CUSTOM EVENT */
+(function () {
+
+	if (typeof window.CustomEvent === "function") return false;
+
+	function CustomEvent(event, params) {
+		params = params || {
+			bubbles: false,
+			cancelable: false,
+			detail: undefined
+		};
+		var evt = document.createEvent('CustomEvent');
+		evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+		return evt;
+	}
+
+	CustomEvent.prototype = window.Event.prototype;
+
+	window.CustomEvent = CustomEvent;
+})();
+
+
 
 var GScroll = {
 	elHtml: document.getElementsByTagName("html")[0],
@@ -47,7 +70,15 @@ var GScroll = {
 			}
 		}
 
-		var EGprevent = new Event('gscroll-prevent');
+		var EGprevent = new CustomEvent('gscroll-prevent', {
+			bubbles: true,
+			cancelable: true,
+			composed: false,
+			detail: {
+				widthWrapper: oldWidth,
+				spaceScroll: (window.outerWidth - oldWidth)
+			}
+		});
 		window.dispatchEvent(EGprevent);
 	},
 	activeScroll: function () {
@@ -67,7 +98,11 @@ var GScroll = {
 
 		window.scrollTo(0, this.scrollPosition);
 
-		var EGactive = new Event('gscroll-active');
+		var EGactive = new CustomEvent('gscroll-active', {
+			bubbles: true,
+			cancelable: true,
+			composed: false
+		});
 		window.dispatchEvent(EGactive);
 	},
 	toggleScroll: function (args) {

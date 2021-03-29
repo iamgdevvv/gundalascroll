@@ -99,9 +99,12 @@
 		GScroll.activeScroll();
 	});
 
-	window.addEventListener("gscroll-prevent", function() {
+	window.addEventListener("gscroll-prevent", function(event) {
 		var elHtml = document.getElementsByTagName("html")[0];
 		document.getElementById("sticky-footer").style.width = parseFloat(getComputedStyle(elHtml, null).width.replace("px", "")) + "px";
+
+		console.log("oldWidth: " + event.detail.oldWidth);
+		console.log("spaceScroll: " + event.detail.spaceScroll);
 	});
 
 	window.addEventListener("gscroll-active", function() {
