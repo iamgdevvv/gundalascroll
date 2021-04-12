@@ -100,15 +100,13 @@
 	});
 
 	window.addEventListener("gscroll-prevent", function(event) {
-		var elHtml = document.getElementsByTagName("html")[0];
-		document.getElementById("sticky-footer").style.width = event.detail.widthWrapper + "px";
-
+		console.log("Scroll Deactive");
 		console.log("widthWrapper: " + event.detail.widthWrapper);
 		console.log("spaceScroll: " + event.detail.spaceScroll);
 	});
 
 	window.addEventListener("gscroll-active", function() {
-		document.getElementById("sticky-footer").removeAttribute("style");
+		console.log("Scroll Active");
 	});
 </script>
 </html>
